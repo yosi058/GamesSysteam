@@ -1,12 +1,15 @@
 package MainGame;
 
+import BoardGame.Board;
+
 import java.util.Scanner;
 
 public class ConsoleIo implements Iconnect {
     private String game;
     private String player;
     private Scanner scanner;
-    public ConsoleIo(){
+
+    public ConsoleIo() {
         this.scanner = new Scanner(System.in);
         this.menu();
     }
@@ -36,9 +39,9 @@ public class ConsoleIo implements Iconnect {
     }
 
     @Override
-    public String getMove() {
+    public String getMove(Board board) {
+        board.presentBoard();
         System.out.println("Please choose a move by this format - start,end");
         return scanner.nextLine();
-
     }
 }

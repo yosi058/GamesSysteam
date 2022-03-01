@@ -27,7 +27,10 @@ public class ChessLogic extends GameLogic {
     @Override
     public int getVal(Board board, Move move) {
         Square square = board.getSquare(move.getX2(), move.getY2());
-        return square.getPiece().getValue();
+        if (square.getPiece() != null) {
+            return square.getPiece().getValue();
+        }
+        return 0;
     }
 
     private boolean checkValid(Move current, ArrayList<Move> valid_moves) {

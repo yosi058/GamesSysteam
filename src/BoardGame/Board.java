@@ -8,4 +8,6 @@ public interface Board{
 
     void updateBoard(int x1, int y1, int x2, int y2);
     Square[][] getBoard();
+
+    void presentBoard();
 }
