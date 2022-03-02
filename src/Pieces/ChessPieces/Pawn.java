@@ -35,29 +35,29 @@ public class Pawn extends ChessPiece{
 
         if(color == Piece.WHITE) {
             // forward
-            if(valid(x,y+1) && !b.getSquare(x, y+1).getOccupied())
-                moves.add(new Move(x,y,x,y+1));
-
-            // kill diagonally
-            if(valid(x+1,y+1) && b.getSquare(x+1, y+1).getOccupied() && b.getSquare(x+1, y+1).getPiece().getColor() != color)
-                moves.add(new Move(x,y,x+1,y+1));
+            if(valid(x-1,y) && !b.getSquare(x-1, y).getOccupied())
+                moves.add(new Move(x,y,x-1,y));
 
             // kill diagonally
             if(valid(x-1,y+1) && b.getSquare(x-1, y+1).getOccupied() && b.getSquare(x-1, y+1).getPiece().getColor() != color)
                 moves.add(new Move(x,y,x-1,y+1));
+
+            // kill diagonally
+            if(valid(x-1,y-1) && b.getSquare(x-1, y-1).getOccupied() && b.getSquare(x-1, y-1).getPiece().getColor() != color)
+                moves.add(new Move(x,y,x-1,y-1));
         }
         else {
             // forward
-            if(valid(x,y-1) && !b.getSquare(x, y-1).getOccupied())
-                moves.add(new Move(x,y,x,y-1));
+            if(valid(x+1,y) && !b.getSquare(x+1, y).getOccupied())
+                moves.add(new Move(x,y,x+1,y));
 
             // kill diagonally
             if(valid(x+1,y-1) && b.getSquare(x+1, y-1).getOccupied() && b.getSquare(x+1, y-1).getPiece().getColor() != color)
                 moves.add(new Move(x,y,x+1,y-1));
 
             // kill diagonally
-            if(valid(x-1,y-1) && b.getSquare(x-1, y-1).getOccupied() && b.getSquare(x-1, y-1).getPiece().getColor() != color)
-                moves.add(new Move(x,y,x-1,y-1));
+            if(valid(x+1,y+1) && b.getSquare(x+1, y+1).getOccupied() && b.getSquare(x+1, y+1).getPiece().getColor() != color)
+                moves.add(new Move(x,y,x+1,y+1));
         }
 
         return moves;

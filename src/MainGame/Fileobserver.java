@@ -23,7 +23,7 @@ public class Fileobserver implements Observer {
         if ((update_one != x1) || (update_two != x2)) {
             update_one = x1;
             update_two = x2;
-            String result = "player one score " + update_one + "player two score" + update_two + "\n";
+            String result = "player one score" + update_one + " player two score" + update_two + " \n";
             try {
                 fileWriter.write(result);
             } catch (IOException e) {

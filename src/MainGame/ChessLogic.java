@@ -20,8 +20,11 @@ public class ChessLogic extends GameLogic {
     @Override
     public boolean isLeagl(Board board, Move move) {
         Square square = board.getSquare(move.getX1(), move.getY1());
-        ArrayList<Move> valid_moves = square.getPiece().getMoves(board, move.getX1(), move.getY1());
-        return checkValid(move, valid_moves);
+        if (square.getPiece()!=null) {
+            ArrayList<Move> valid_moves = square.getPiece().getMoves(board, move.getX1(), move.getY1());
+            return checkValid(move, valid_moves);
+        }
+        return false;
     }
 
     @Override

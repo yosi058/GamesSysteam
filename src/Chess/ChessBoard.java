@@ -1,29 +1,41 @@
 package Chess;
-import BoardGame.*;
-import Pieces.ChessPieces.*;
+
+import BoardGame.Board;
+import BoardGame.Iterator;
+import BoardGame.Move;
+import BoardGame.Square;
+import Pieces.ChessPieces.Bishop;
+import Pieces.ChessPieces.ChessPiece;
+import Pieces.ChessPieces.King;
+import Pieces.ChessPieces.Knight;
+import Pieces.ChessPieces.Pawn;
+import Pieces.ChessPieces.Queen;
+import Pieces.ChessPieces.Rook;
 import Pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class ChessBoard implements Board {
-    public static final int a=0, b=1, c=2, d=3, e=4, f=5, g=6, h=7;
+    public static final int a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7;
 
     private Square[][] squares;
+
     /**
-     * 	 8	r n b q k b n r
-     *	 7	p p p p p p p p
-     *	 6	. . . . . . . .
-     *	 5	. . . . . . . .
-     *	 4	. . . . . . . .
-     *	 3	. . . . . . . .
-     *	 2	P P P P P P P P
-     *	 1  R N B Q K B N R
-     *
-     *    	a b c d e f g h
-     *
+     * 8	r n b q k b n r
+     * 7	p p p p p p p p
+     * 6	. . . . . . . .
+     * 5	. . . . . . . .
+     * 4	. . . . . . . .
+     * 3	. . . . . . . .
+     * 2	P P P P P P P P
+     * 1  R N B Q K B N R
+     * <p>
+     * a b c d e f g h
+     * <p>
      * P=pawn, K=king, Q=queen, R=rook, N=knight, B=Bishop
      * Uppercase is white
+     *
      * @param squares
      */
 
@@ -36,41 +48,63 @@ public class ChessBoard implements Board {
      */
     public ChessBoard() {
         // initialize board
-        boolean Color = ChessPiece.WHITE;
+        boolean Color = ChessPiece.BLACK;
         squares = new Square[8][8];
-        squares[a][0] = new Square(new Rook(Color));
-        squares[b][0] = new Square(new Knight(Color));
-        squares[c][0] = new Square(new Bishop(Color));
-        squares[d][0] = new Square(new Queen(Color));
-        squares[e][0] = new Square(new King(Color));
-        squares[f][0] = new Square(new Bishop(Color));
-        squares[g][0] = new Square(new Knight(Color));
-        squares[h][0] = new Square(new Rook(Color));
+//        squares[a][0] = new Square(new Rook(Color));
+//        squares[b][0] = new Square(new Knight(Color));
+//        squares[c][0] = new Square(new Bishop(Color));
+//        squares[d][0] = new Square(new Queen(Color));
+//        squares[e][0] = new Square(new King(Color));
+//        squares[f][0] = new Square(new Bishop(Color));
+//        squares[g][0] = new Square(new Knight(Color));
+//        squares[h][0] = new Square(new Rook(Color));
 
-        for(int i = 0; i < 8; i++) {
-            squares[i][1] = new Square(new Pawn(Color));
+        squares[a][a] = new Square(new Rook(Color));
+        squares[a][b] = new Square(new Knight(Color));
+        squares[a][c] = new Square(new Bishop(Color));
+        squares[a][d] = new Square(new Queen(Color));
+        squares[a][e] = new Square(new King(Color));
+        squares[a][f] = new Square(new Bishop(Color));
+        squares[a][g] = new Square(new Knight(Color));
+        squares[a][h] = new Square(new Rook(Color));
+
+        for (int i = 0; i < 8; i++) {
+            squares[1][i] = new Square(new Pawn(Color));
         }
 
-        for(int i = 2; i < 7; i++) {
-            for(int j = 0; j < 8; j++) {
-                squares[j][i] = new Square();
+        for (int i = 2; i < 7; i++) {
+            for (int j = 0; j < 8; j++) {
+                squares[i][j] = new Square();
             }
         }
 
-        Color = ChessPiece.BLACK;
-        squares[a][8-1] = new Square(new Rook(Color));
-        squares[b][8-1] = new Square(new Knight(Color));
-        squares[c][8-1] = new Square(new Bishop(Color));
-        squares[d][8-1] = new Square(new Queen(Color));
-        squares[e][8-1] = new Square(new King(Color));
-        squares[f][8-1] = new Square(new Bishop(Color));
-        squares[g][8-1] = new Square(new Knight(Color));
-        squares[h][8-1] = new Square(new Rook(Color));
+        Color = ChessPiece.WHITE;
+//        squares[a][8 - 1] = new Square(new Rook(Color));
+//        squares[b][8 - 1] = new Square(new Knight(Color));
+//        squares[c][8 - 1] = new Square(new Bishop(Color));
+//        squares[d][8 - 1] = new Square(new Queen(Color));
+//        squares[e][8 - 1] = new Square(new King(Color));
+//        squares[f][8 - 1] = new Square(new Bishop(Color));
+//        squares[g][8 - 1] = new Square(new Knight(Color));
+//        squares[h][8 - 1] = new Square(new Rook(Color));
+//
+//        for (int i = 0; i < 8; i++) {
+//            squares[i][7 - 1] = new Square(new Pawn(Color));
+//        }
+        squares[h][a] = new Square(new Rook(Color));
+        squares[h][b] = new Square(new Knight(Color));
+        squares[h][c] = new Square(new Bishop(Color));
+        squares[h][d] = new Square(new Queen(Color));
+        squares[h][e] = new Square(new King(Color));
+        squares[h][f] = new Square(new Bishop(Color));
+        squares[h][g] = new Square(new Knight(Color));
+        squares[h][h] = new Square(new Rook(Color));
 
-        for(int i = 0; i < 8; i++) {
-            squares[i][7-1] = new Square(new Pawn(Color));
+        for (int i = 0; i < 8; i++) {
+            squares[6][i] = new Square(new Pawn(Color));
         }
     }
+
     private class ChessBoardIterator implements Iterator {
         //private  Square[][] squaress;
         private int rowIndex = 0;
@@ -78,10 +112,10 @@ public class ChessBoard implements Board {
 
         @Override
         public boolean hasNext() {
-            if(rowIndex >= squares.length){
+            if (rowIndex >= squares.length) {
                 return false;
             }
-            if(columnIndex >= squares[rowIndex].length && rowIndex == squares.length-1) {
+            if (columnIndex >= squares[rowIndex].length && rowIndex == squares.length - 1) {
                 return false;
             }
             return true;
@@ -90,8 +124,9 @@ public class ChessBoard implements Board {
 
         @Override
         public Object next() {
-            if (!hasNext())
+            if (!hasNext()) {
                 throw new NoSuchElementException();
+            }
             if (columnIndex >= squares[rowIndex].length) {
                 rowIndex++;
                 columnIndex = 0;
@@ -103,9 +138,9 @@ public class ChessBoard implements Board {
     @Override
     public String toString() {
         String str = "";
-        for(int i = 7; i >= 0; i--) {
-            str += (i+1) + "  ";
-            for(int j = 0; j < 8; j++) {
+        for (int i = 7; i >= 0; i--) {
+            str += (i + 1) + "  ";
+            for (int j = 0; j < 8; j++) {
                 str += squares[j][i] + " ";
             }
             str += "\n";
@@ -121,33 +156,34 @@ public class ChessBoard implements Board {
     }
 
 
-
-
     @Override
     public boolean gameOver(int colorValue) {
         boolean color;
-        if(colorValue == 1) {
+        if (colorValue == 1) {
             color = true;
         } else {
             color = false;
         }
         int x = -1, y = -1;
-        for(int i = 0; i < 8; i++)
-            for(int j = 0; j < 8; j++) {
-                if(squares[i][j].getOccupied() &&
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (squares[i][j].getOccupied() &&
                         squares[i][j].getPiece().getColor() == color &&
                         squares[i][j].getPiece().toString().equalsIgnoreCase("K")) {
-                    x = i; y = j;
+                    x = i;
+                    y = j;
                 }
             }
+        }
 
         // check a move if after making this move the king can be killed (moving into check)
         ArrayList<Move> opponentMoves = getMoves(!color, false);
 
         // check all opponent moves if they kill king (opponent moves in next round)
-        for(int j = 0; j < opponentMoves.size(); j++) {
-            if(opponentMoves.get(j).getX2() == x && opponentMoves.get(j).getY2() == y)
+        for (int j = 0; j < opponentMoves.size(); j++) {
+            if (opponentMoves.get(j).getX2() == x && opponentMoves.get(j).getY2() == y) {
                 return true;
+            }
         }
 
         return false;
@@ -165,22 +201,25 @@ public class ChessBoard implements Board {
         Square[][] newSquares = getTilesAfter(moves);
 
         int x = -1, y = -1;
-        for(int i = 0; i < 8; i++)
-            for(int j = 0; j < 8; j++) {
-                if(newSquares[i][j].getOccupied() &&
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (newSquares[i][j].getOccupied() &&
                         newSquares[i][j].getPiece().getColor() == color &&
                         newSquares[i][j].getPiece().toString().equalsIgnoreCase("K")) {
-                    x = i; y = j;
+                    x = i;
+                    y = j;
                 }
             }
+        }
 
         // check a move if after making this move the king can be killed (moving into check)
         ArrayList<Move> opponentMoves = getMovesAfter(!color, moves, false);
 
         // check all opponent moves if they kill king (opponent moves in next round)
-        for(int j = 0; j < opponentMoves.size(); j++) {
-            if(opponentMoves.get(j).getX2() == x && opponentMoves.get(j).getY2() == y)
+        for (int j = 0; j < opponentMoves.size(); j++) {
+            if (opponentMoves.get(j).getX2() == x && opponentMoves.get(j).getY2() == y) {
                 return true;
+            }
         }
 
         return false;
@@ -189,43 +228,47 @@ public class ChessBoard implements Board {
     public ArrayList<Move> getMoves(boolean color, boolean checkCheck) {
         ArrayList<Move> moves = new ArrayList<>();
 
-        for(int i = 0; i < 8; i++)
-            for(int j = 0; j < 8; j++) {
-                if(squares[i][j].getOccupied() &&
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (squares[i][j].getOccupied() &&
                         squares[i][j].getPiece().getColor() == color) {
                     moves.addAll(squares[i][j].getPiece().getMoves(this, i, j));
                 }
             }
+        }
 
         // check if move is valid (must not be check after move) and throw away erroneous moves
-        if(checkCheck) {
+        if (checkCheck) {
             // find king (of correct color)
             int x = -1, y = -1;
-            for(int i = 0; i < 8; i++)
-                for(int j = 0; j < 8; j++) {
-                    if(squares[i][j].getOccupied() &&
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (squares[i][j].getOccupied() &&
                             squares[i][j].getPiece().getColor() == color &&
                             squares[i][j].getPiece().toString().equalsIgnoreCase("K")) {
-                        x = i; y = j;
+                        x = i;
+                        y = j;
                     }
                 }
+            }
 
             ArrayList<Move> removeThese = new ArrayList<Move>();
-            for(int i = 0; i < moves.size(); i++) {
+            for (int i = 0; i < moves.size(); i++) {
                 // check a move if after making this move the king can be killed (moving into check)
-                ArrayList<Move> checkThis = new ArrayList<Move>(moves.subList(i, i+1));
+                ArrayList<Move> checkThis = new ArrayList<Move>(moves.subList(i, i + 1));
                 ArrayList<Move> opponentMoves = getMovesAfter(!color, checkThis, false);
 
                 int xUpdated = x, yUpdated = y;
-                if(checkThis.get(0).getX1() == x && checkThis.get(0).getY1() == y) { // get updated king position
+                if (checkThis.get(0).getX1() == x && checkThis.get(0).getY1() == y) { // get updated king position
                     xUpdated = checkThis.get(0).getX2();
                     yUpdated = checkThis.get(0).getY2();
                 }
 
                 // check all opponent moves if they kill king (opponent moves in next round)
-                for(int j = 0; j < opponentMoves.size(); j++) {
-                    if(opponentMoves.get(j).getX2() == xUpdated && opponentMoves.get(j).getY2() == yUpdated)
+                for (int j = 0; j < opponentMoves.size(); j++) {
+                    if (opponentMoves.get(j).getX2() == xUpdated && opponentMoves.get(j).getY2() == yUpdated) {
                         removeThese.add(checkThis.get(0));
+                    }
                 }
             }
 
@@ -250,8 +293,9 @@ public class ChessBoard implements Board {
 
         ChessBoard b = new ChessBoard(temp);
 
-        for(int i = 0; i < moves.size(); i++)
+        for (int i = 0; i < moves.size(); i++) {
             b.makeMove(moves.get(i));
+        }
 
         ArrayList<Move> futureMoves = b.getMoves(color, checkCheck);
 
@@ -269,8 +313,9 @@ public class ChessBoard implements Board {
 
         ChessBoard b = new ChessBoard(temp);
 
-        for(int i = 0; i < moves.size(); i++)
+        for (int i = 0; i < moves.size(); i++) {
             b.makeMove(moves.get(i));
+        }
 
         Square[][] temp2 = new Square[8][8];
         for (int y = 0; y < 8; y++) {
@@ -285,8 +330,8 @@ public class ChessBoard implements Board {
     /**
      * @param m
      * @return -1 if black wins
-     * 			1 if white wins
-     * 			0 if game continues
+     * 1 if white wins
+     * 0 if game continues
      */
     public int makeMove(Move m) {
         Square oldSquare = squares[m.getX1()][m.getY1()];
@@ -294,31 +339,33 @@ public class ChessBoard implements Board {
         squares[m.getX2()][m.getY2()] = squares[m.getX1()][m.getY1()];
         squares[m.getX1()][m.getY1()] = new Square();
 
-        if(m.isCastling()) {
-            if(m.getX2() == g && m.getY2() == 1-1) {
-                squares[f][1-1] = squares[h][1-1];
-                squares[h][1-1] = new Square();
+        if (m.isCastling()) {
+            if (m.getX2() == g && m.getY2() == 1 - 1) {
+                squares[f][1 - 1] = squares[h][1 - 1];
+                squares[h][1 - 1] = new Square();
             }
-            if(m.getX2() == c && m.getY2() == 1-1) {
-                squares[d][1-1] = squares[a][1-1];
-                squares[a][1-1] = new Square();
+            if (m.getX2() == c && m.getY2() == 1 - 1) {
+                squares[d][1 - 1] = squares[a][1 - 1];
+                squares[a][1 - 1] = new Square();
             }
-            if(m.getX2() == g && m.getY2() == 8-1) {
-                squares[f][8-1] = squares[h][8-1];
-                squares[h][8-1] = new Square();
+            if (m.getX2() == g && m.getY2() == 8 - 1) {
+                squares[f][8 - 1] = squares[h][8 - 1];
+                squares[h][8 - 1] = new Square();
             }
-            if(m.getX2() == c && m.getY2() == 8-1) {
-                squares[d][8-1] = squares[a][8-1];
-                squares[a][8-1] = new Square();
+            if (m.getX2() == c && m.getY2() == 8 - 1) {
+                squares[d][8 - 1] = squares[a][8 - 1];
+                squares[a][8 - 1] = new Square();
             }
         }
 
         // pawn at top?
-        if(oldSquare.getPiece().toString().equals("P") && m.getY2() == 8-1)
+        if (oldSquare.getPiece().toString().equals("P") && m.getY2() == 8 - 1) {
             squares[m.getX2()][m.getY2()] = new Square(new Queen(Piece.WHITE));
+        }
 
-        if(oldSquare.getPiece().toString().equals("p") && m.getY2() == 1-1)
+        if (oldSquare.getPiece().toString().equals("p") && m.getY2() == 1 - 1) {
             squares[m.getX2()][m.getY2()] = new Square(new Queen(Piece.BLACK));
+        }
 
         return 0;
     }

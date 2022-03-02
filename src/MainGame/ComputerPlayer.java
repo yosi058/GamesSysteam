@@ -17,7 +17,7 @@ public class ComputerPlayer extends Iplayer {
 
     @Override
     public Move getMove(Board board, int turn) {
-        iconnect.showBoard(board);
+        iconnect.showBoard(board,turn);
         Random rand = new Random();
         boolean color = true;
         if (turn == 0) {

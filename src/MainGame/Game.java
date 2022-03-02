@@ -35,11 +35,11 @@ public class Game implements Iobserable {
                 getcurrentplayer(turn).getCounter().increase(gameLogic.getVal(board, move));
                 notifyall();
                 gameLogic.updateBoard(board, move);
-            }
-            if (turn == 1) {
-                turn = 0;
-            } else {
-                turn = 1;
+                if (turn == 1) {
+                    turn = 0;
+                } else {
+                    turn = 1;
+                }
             }
         }
     }

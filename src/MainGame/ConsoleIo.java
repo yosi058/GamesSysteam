@@ -40,23 +40,37 @@ public class ConsoleIo implements Iconnect {
         return Integer.parseInt(this.player);
     }
 
-    public void showBoard(Board board) {
+    public void showBoard(Board board, int turn) {
+        if (turn == 1) {
+            System.out.print("It's White turn - play!\n");
+        } else {
+            System.out.print("It's black turn - play!\n");
+        }
         Square[][] squares = board.getBoard();
         int columnLength = squares[0].length;
         int i = 0;
-        for(Iterator iter = board.getIterator(); iter.hasNext();){
-            Square square = (Square)iter.next();
-            String squareToPrint =  square.toString();
-            System.out.println("|"+ squareToPrint + "|");
+        int size = 0;
+        System.out.print("----------------\n");
+        System.out.print("|");
+        for (Iterator iter = board.getIterator(); iter.hasNext(); ) {
+            Square square = (Square) iter.next();
+            String squareToPrint = square.toString();
+            System.out.print(squareToPrint + " ");
             i++;
             if ((i % columnLength) == 0) {
-                System.out.println("\n");
+                System.out.print("|\n");
+                size++;
+                if (size != columnLength) {
+                    System.out.print("|");
+                }
             }
         }
+        System.out.print("----------------\n");
     }
+
     @Override
-    public String getMove(Board board) {
-        this.showBoard(board);
+    public String getMove(Board board,int turn) {
+        this.showBoard(board,turn);
         System.out.println("Please choose a move by this format - start,end");
         return scanner.nextLine();
     }

@@ -18,7 +18,7 @@ public class HumanPlayer extends Iplayer {
     @Override
     public Move getMove(Board board,int turn) {
         //print the board
-        String move = iconnect.getMove(board);
+        String move = iconnect.getMove(board,turn);
         String[] moves = move.split(",");
         ArrayList<Integer> indexs = convertMove(moves[0].toCharArray());
         int x = indexs.get(1);
