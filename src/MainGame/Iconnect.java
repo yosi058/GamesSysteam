@@ -7,4 +7,5 @@ public interface Iconnect {
      int getTypeGame();
      int getTypePlayer();
      String getMove(Board board);
+     void showBoard(Board board);
 }

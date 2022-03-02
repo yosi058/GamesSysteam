@@ -1,6 +1,8 @@
 package MainGame;
 
 import BoardGame.Board;
+import BoardGame.Iterator;
+import BoardGame.Square;
 
 import java.util.Scanner;
 
@@ -38,9 +40,23 @@ public class ConsoleIo implements Iconnect {
         return Integer.parseInt(this.player);
     }
 
+    public void showBoard(Board board) {
+        Square[][] squares = board.getBoard();
+        int columnLength = squares[0].length;
+        int i = 0;
+        for(Iterator iter = board.getIterator(); iter.hasNext();){
+            Square square = (Square)iter.next();
+            String squareToPrint =  square.toString();
+            System.out.println("|"+ squareToPrint + "|");
+            i++;
+            if ((i % columnLength) == 0) {
+                System.out.println("\n");
+            }
+        }
+    }
     @Override
     public String getMove(Board board) {
-        board.presentBoard();
+        this.showBoard(board);
         System.out.println("Please choose a move by this format - start,end");
         return scanner.nextLine();
     }

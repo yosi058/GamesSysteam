@@ -82,4 +82,12 @@ public class Bishop extends ChessPiece{
 
         return moves;
     }
+
+    @Override
+    public String toString() {
+        if(color == Piece.WHITE)
+            return "B";
+        else
+            return "b";
+    }
 }

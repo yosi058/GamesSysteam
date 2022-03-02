@@ -27,11 +27,7 @@ public abstract class Piece {
 
         public abstract ArrayList<Move> getMoves(Board board, int x, int y);
 
-        static public boolean valid(int x, int y) {
-            if(x < 0 || x > 7 || y < 0 || y > 7)
-                return false;
-            else
-                return true;
-        }
+        public abstract String toString();
+        public abstract boolean valid(int x, int y);
 
 }

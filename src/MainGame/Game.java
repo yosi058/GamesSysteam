@@ -29,7 +29,7 @@ public class Game implements Iobserable {
     }
 
     public void start() {
-        while (!gameLogic.isFinish(board)) {
+        while (!gameLogic.isFinish(board , turn)) {
             Move move = getcurrentplayer(turn).getMove(board,turn);
             if (gameLogic.isLeagl(board, move)) {
                 getcurrentplayer(turn).getCounter().increase(gameLogic.getVal(board, move));

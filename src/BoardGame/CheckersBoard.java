@@ -7,7 +7,7 @@ public class CheckersBoard implements Board{
     }
 
     @Override
-    public boolean gameOver() {
+    public boolean gameOver(int color) {
         return false;
     }
 
@@ -19,5 +19,10 @@ public class CheckersBoard implements Board{
     @Override
     public Square[][] getBoard() {
         return new Square[0][];
+    }
+
+    @Override
+    public Iterator getIterator() {
+        return null;
     }
 }

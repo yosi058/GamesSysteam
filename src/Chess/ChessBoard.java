@@ -6,7 +6,7 @@ import Pieces.Piece;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class ChessBoard implements Board,Container {
+public class ChessBoard implements Board {
     public static final int a=0, b=1, c=2, d=3, e=4, f=5, g=6, h=7;
 
     private Square[][] squares;
@@ -121,13 +121,16 @@ public class ChessBoard implements Board,Container {
     }
 
 
-    /**
-     * Checks if player color is under check
-     *
-     * @param color
-     * @return
-     */
-    public boolean isCheck(boolean color) {
+
+
+    @Override
+    public boolean gameOver(int colorValue) {
+        boolean color;
+        if(colorValue == 1) {
+            color = true;
+        } else {
+            color = false;
+        }
         int x = -1, y = -1;
         for(int i = 0; i < 8; i++)
             for(int j = 0; j < 8; j++) {
@@ -324,10 +327,10 @@ public class ChessBoard implements Board,Container {
         return squares[x][y];
     }
 
-    @Override
-    public boolean gameOver() {
-        return false;
-    }
+//    @Override
+//    public boolean gameOver() {
+//        return false;
+//    }
 
     @Override
     public void updateBoard(int x1, int y1, int x2, int y2) {

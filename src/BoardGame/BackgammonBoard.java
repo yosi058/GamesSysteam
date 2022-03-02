@@ -7,7 +7,7 @@ public class BackgammonBoard implements Board{
     }
 
     @Override
-    public boolean gameOver() {
+    public boolean gameOver(int color) {
         return false;
     }
 
@@ -22,6 +22,7 @@ public class BackgammonBoard implements Board{
     }
 
     @Override
-    public void presentBoard() {
+    public Iterator getIterator() {
+        return null;
     }
 }

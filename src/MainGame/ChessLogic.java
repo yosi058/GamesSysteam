@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class ChessLogic extends GameLogic {
     @Override
-    public boolean isFinish(Board board) {
-        return board.gameOver();
+    public boolean isFinish(Board board, int color) {
+        return board.gameOver(color);
     }
 
     @Override
