@@ -42,6 +42,7 @@ public class Game implements Iobserable {
                 }
             }
         }
+        getcurrentplayer(turn).getIconnect().showWinner(turn);
     }
 
     @Override

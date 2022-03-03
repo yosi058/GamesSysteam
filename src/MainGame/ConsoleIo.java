@@ -74,4 +74,13 @@ public class ConsoleIo implements Iconnect {
         System.out.println("Please choose a move by this format - start,end");
         return scanner.nextLine();
     }
+    public void showWinner(int turn) {
+        if(turn == 1) {
+            System.out.println("The black player wins!");
+        } else {
+            System.out.println("The white player wins!");
+        }
+    }
+
 }
+
