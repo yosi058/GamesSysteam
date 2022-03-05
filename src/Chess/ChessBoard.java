@@ -14,10 +14,12 @@ import Pieces.ChessPieces.Rook;
 import Pieces.Piece;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.NoSuchElementException;
 
 public class ChessBoard implements Board {
     public static final int a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7;
+    private static ChessBoard chessBoard = null;
 
     private Square[][] squares;
 
@@ -39,14 +41,14 @@ public class ChessBoard implements Board {
      * @param squares
      */
 
-    public ChessBoard(Square[][] squares) {
+    private ChessBoard(Square[][] squares) {
         this.squares = squares;
     }
 
     /**
      *
      */
-    public ChessBoard() {
+    private ChessBoard() {
         // initialize board
         boolean Color = ChessPiece.BLACK;
         squares = new Square[8][8];
@@ -103,6 +105,14 @@ public class ChessBoard implements Board {
         for (int i = 0; i < 8; i++) {
             squares[6][i] = new Square(new Pawn(Color));
         }
+    }
+
+    public static Board getInstancce() {
+        if (chessBoard != null) {
+            return chessBoard;
+        }
+        chessBoard = new ChessBoard();
+        return chessBoard;
     }
 
     private class ChessBoardIterator implements Iterator {
@@ -274,7 +284,7 @@ public class ChessBoard implements Board {
 
             moves.removeAll(removeThese); // remove invalid moves
         }
-
+        Collections.shuffle(moves);
         return moves;
     }
 
