@@ -107,7 +107,7 @@ public class ChessBoard implements Board {
         }
     }
 
-    public static Board getInstancce() {
+    public static Board getInstance() {
         if (chessBoard != null) {
             return chessBoard;
         }

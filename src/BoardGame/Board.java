@@ -10,4 +10,5 @@ public interface Board{
     Square[][] getBoard();
 
     Iterator getIterator();
+
 }

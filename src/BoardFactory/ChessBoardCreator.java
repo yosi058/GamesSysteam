@@ -3,10 +3,10 @@ package BoardFactory;
 import BoardGame.Board;
 import Chess.ChessBoard;
 
-public class ChessBoardFactory implements Creator{
-//
+public class ChessBoardCreator implements IBoardCreator {
+
 @Override
 public Board create() {
-    return ChessBoard.getInstancce();
+    return ChessBoard.getInstance();
 }
 }
