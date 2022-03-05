@@ -20,5 +20,4 @@ public class Main {
         game.addObserver(fileobserver);
         game.start();
     }
-
 }
