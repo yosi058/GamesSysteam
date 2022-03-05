@@ -9,4 +9,5 @@ public abstract class Iplayer {
   protected Counter counter;
   public abstract Move getMove(Board board,int turn);
   public abstract Counter getCounter();
+  public abstract Iconnect getIconnect();
 }

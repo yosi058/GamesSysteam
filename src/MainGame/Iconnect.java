@@ -8,4 +8,5 @@ public interface Iconnect {
      int getTypePlayer();
      String getMove(Board board,int turn);
      void showBoard(Board board,int turn);
+     void showWinner(int turn);
 }

@@ -33,7 +33,9 @@ public class HumanPlayer extends Iplayer {
     public Counter getCounter() {
         return this.counter;
     }
-
+    public Iconnect getIconnect() {
+         return this.iconnect;
+    }
 //    private boolean checkValid(int x, int y, int x2, int y2, ArrayList<Move> valid_moves) {
 //        for (Move move : valid_moves) {
 //            if ((x == move.getX1()) && (x2 == move.getX2()) && (y == move.getY1()) && (y2 == move.getY2())){

@@ -39,4 +39,9 @@ public class ComputerPlayer extends Iplayer {
     public Counter getCounter() {
         return this.counter;
     }
+
+    @Override
+    public Iconnect getIconnect() {
+        return this.iconnect;
+    }
 }
