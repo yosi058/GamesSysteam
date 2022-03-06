@@ -60,7 +60,7 @@ public class ConsoleIo extends Iconnect {
         System.out.print("----------------\n");
         System.out.print("|");
         for (Iterator iter = board.getIterator(); iter.hasNext(); ) {
-            Square square = (Square) iter.next();
+            Object square =  iter.next();
             String squareToPrint = square.toString();
             System.out.print(squareToPrint + " ");
             i++;
@@ -84,9 +84,9 @@ public class ConsoleIo extends Iconnect {
 
     public void showWinner(int turn) {
         if (turn == 1) {
-            System.out.println("The black player wins-the score is !" + this.score1);
+            System.out.println("The black player wins-the score is !" + this.score2);
         } else {
-            System.out.println("The white player wins-the score is!" + this.score2);
+            System.out.println("The white player wins-the score is!" + this.score1);
         }
     }
 

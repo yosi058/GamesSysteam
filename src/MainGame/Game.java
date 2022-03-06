@@ -11,7 +11,7 @@ public class Game implements Iobserable {
     private Iplayer playerA;
     private Iplayer playerB;
     private int turn = 1;
-//    public static final boolean color = t
+    //    public static final boolean color = t
     private LinkedList<Observer> observers = new LinkedList<>();
 
     public Game(Board b, GameLogic g, Iplayer A, Iplayer B) {
@@ -29,8 +29,8 @@ public class Game implements Iobserable {
     }
 
     public void start() {
-        while (!gameLogic.isFinish(board , turn)) {
-            Move move = getcurrentplayer(turn).getMove(board,turn);
+        while (!gameLogic.isFinish(board, turn)) {
+            Move move = getcurrentplayer(turn).getMove(board, turn);
             if (gameLogic.isLeagl(board, move)) {
                 getcurrentplayer(turn).getCounter().increase(gameLogic.getVal(board, move));
                 notifyall();
@@ -42,6 +42,7 @@ public class Game implements Iobserable {
                 }
             }
         }
+        notifyall();
         getcurrentplayer(turn).getIconnect().showWinner(turn);
     }
 
