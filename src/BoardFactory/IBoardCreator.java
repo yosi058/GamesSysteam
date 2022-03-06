@@ -2,6 +2,6 @@ package BoardFactory;
 
 import BoardGame.Board;
 
-public interface Creator {
+public interface IBoardCreator {
     public Board create();
 }

@@ -3,7 +3,7 @@ package BoardFactory;
 import BoardGame.Board;
 import BoardGame.CheckersBoard;
 
-public class CheckersBoardFactory implements Creator{
+public class CheckersBoardCreator implements IBoardCreator {
     @Override
     public Board create() {
         return new CheckersBoard();
