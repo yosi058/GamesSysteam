@@ -3,18 +3,21 @@ package MainGame;
 public class Counter {
     private int count;
 
-    public Counter(){
+    public Counter() {
         count = 0;
     }
 
-    public void increase(int x){
-        count+=x;
-
+    public void increase(int x) {
+        if (x > 0) {
+            count += x;
+        }
     }
-    public int getCount(){
+
+    public int getCount() {
         return count;
     }
-    public void set(int x){
+
+    public void set(int x) {
         count = x;
     }
 }

@@ -17,7 +17,7 @@ public class ComputerPlayer extends Iplayer {
 
     @Override
     public Move getMove(Board board, int turn) {
-        iconnect.showBoard(board,turn);
+        iconnect.showBoard(board, turn);
         Random rand = new Random();
         boolean color = true;
         if (turn == 0) {
@@ -29,7 +29,9 @@ public class ComputerPlayer extends Iplayer {
             int y = rand.nextInt(7);
             if (squares[x][y].getPiece() != null) {
                 if (squares[x][y].getPiece().getColor() == color) {
-                    return new Move(squares[x][y].getPiece().getMoves(board, x, y).get(0));
+                    if (squares[x][y].getPiece().getMoves(board, x, y).size() > 0) {
+                        return new Move(squares[x][y].getPiece().getMoves(board, x, y).get(0));
+                    }
                 }
             }
         }
