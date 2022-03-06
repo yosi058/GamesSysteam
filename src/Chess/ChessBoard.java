@@ -31,7 +31,7 @@ public class ChessBoard implements Board {
      * 4	. . . . . . . .
      * 3	. . . . . . . .
      * 2	P P P P P P P P
-     * 1  R N B Q K B N R
+     * 1    R N B Q K B N R
      * <p>
      * a b c d e f g h
      * <p>
@@ -45,21 +45,10 @@ public class ChessBoard implements Board {
         this.squares = squares;
     }
 
-    /**
-     *
-     */
     private ChessBoard() {
         // initialize board
         boolean Color = ChessPiece.BLACK;
         squares = new Square[8][8];
-//        squares[a][0] = new Square(new Rook(Color));
-//        squares[b][0] = new Square(new Knight(Color));
-//        squares[c][0] = new Square(new Bishop(Color));
-//        squares[d][0] = new Square(new Queen(Color));
-//        squares[e][0] = new Square(new King(Color));
-//        squares[f][0] = new Square(new Bishop(Color));
-//        squares[g][0] = new Square(new Knight(Color));
-//        squares[h][0] = new Square(new Rook(Color));
 
         squares[a][a] = new Square(new Rook(Color));
         squares[a][b] = new Square(new Knight(Color));
@@ -81,18 +70,7 @@ public class ChessBoard implements Board {
         }
 
         Color = ChessPiece.WHITE;
-//        squares[a][8 - 1] = new Square(new Rook(Color));
-//        squares[b][8 - 1] = new Square(new Knight(Color));
-//        squares[c][8 - 1] = new Square(new Bishop(Color));
-//        squares[d][8 - 1] = new Square(new Queen(Color));
-//        squares[e][8 - 1] = new Square(new King(Color));
-//        squares[f][8 - 1] = new Square(new Bishop(Color));
-//        squares[g][8 - 1] = new Square(new Knight(Color));
-//        squares[h][8 - 1] = new Square(new Rook(Color));
-//
-//        for (int i = 0; i < 8; i++) {
-//            squares[i][7 - 1] = new Square(new Pawn(Color));
-//        }
+
         squares[h][a] = new Square(new Rook(Color));
         squares[h][b] = new Square(new Knight(Color));
         squares[h][c] = new Square(new Bishop(Color));
@@ -116,7 +94,6 @@ public class ChessBoard implements Board {
     }
 
     private class ChessBoardIterator implements Iterator {
-        //private  Square[][] squaress;
         private int rowIndex = 0;
         private int columnIndex = 0;
 
@@ -199,16 +176,9 @@ public class ChessBoard implements Board {
         return false;
     }
 
-    /**
-     * Checks if player color is under check
-     *
-     * @param color
-     * @param moves
-     * @return
-     */
     public boolean isCheckAfter(boolean color, ArrayList<Move> moves) {
 
-        Square[][] newSquares = getTilesAfter(moves);
+        Square[][] newSquares = getSquaresAfter(moves);
 
         int x = -1, y = -1;
         for (int i = 0; i < 8; i++) {
@@ -284,7 +254,7 @@ public class ChessBoard implements Board {
 
             moves.removeAll(removeThese); // remove invalid moves
         }
-        Collections.shuffle(moves);
+        //Collections.shuffle(moves);
         return moves;
     }
 
@@ -312,7 +282,7 @@ public class ChessBoard implements Board {
         return futureMoves;
     }
 
-    public Square[][] getTilesAfter(ArrayList<Move> moves) {
+    public Square[][] getSquaresAfter(ArrayList<Move> moves) {
 
         Square[][] temp = new Square[8][8];
         for (int y = 0; y < 8; y++) {
@@ -337,12 +307,6 @@ public class ChessBoard implements Board {
         return temp2;
     }
 
-    /**
-     * @param m
-     * @return -1 if black wins
-     * 1 if white wins
-     * 0 if game continues
-     */
     public int makeMove(Move m) {
         Square oldSquare = squares[m.getX1()][m.getY1()];
 
@@ -350,13 +314,13 @@ public class ChessBoard implements Board {
         squares[m.getX1()][m.getY1()] = new Square();
 
         if (m.isCastling()) {
-            if (m.getX2() == g && m.getY2() == 1 - 1) {
-                squares[f][1 - 1] = squares[h][1 - 1];
-                squares[h][1 - 1] = new Square();
+            if (m.getX2() == g && m.getY2() == 0) {
+                squares[f][0] = squares[h][0];
+                squares[h][0] = new Square();
             }
-            if (m.getX2() == c && m.getY2() == 1 - 1) {
-                squares[d][1 - 1] = squares[a][1 - 1];
-                squares[a][1 - 1] = new Square();
+            if (m.getX2() == c && m.getY2() == 0) {
+                squares[d][0] = squares[a][0];
+                squares[a][0] = new Square();
             }
             if (m.getX2() == g && m.getY2() == 8 - 1) {
                 squares[f][8 - 1] = squares[h][8 - 1];
@@ -368,12 +332,11 @@ public class ChessBoard implements Board {
             }
         }
 
-        // pawn at top?
         if (oldSquare.getPiece().toString().equals("P") && m.getY2() == 8 - 1) {
             squares[m.getX2()][m.getY2()] = new Square(new Queen(Piece.WHITE));
         }
 
-        if (oldSquare.getPiece().toString().equals("p") && m.getY2() == 1 - 1) {
+        if (oldSquare.getPiece().toString().equals("p") && m.getY2() == 0) {
             squares[m.getX2()][m.getY2()] = new Square(new Queen(Piece.BLACK));
         }
 
@@ -384,10 +347,6 @@ public class ChessBoard implements Board {
         return squares[x][y];
     }
 
-//    @Override
-//    public boolean gameOver() {
-//        return false;
-//    }
 
     @Override
     public void updateBoard(int x1, int y1, int x2, int y2) {

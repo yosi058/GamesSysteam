@@ -5,7 +5,6 @@ import BoardGame.Move;
 
 public  abstract class GameLogic {
 
-
     public abstract boolean isFinish( Board board, int turn);
 
     public abstract void updateBoard(Board board, Move move);
